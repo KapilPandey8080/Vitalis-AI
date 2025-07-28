@@ -1,0 +1,11 @@
+{
+  "name": "vitalis_ai",
+  "version": "1.0.0",
+  "main": "./backend/app.py",
+  "scripts": {
+    "flask run": "flask --app app.py run --debug"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
