@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import axios from 'axios'; // Using axios directly as in your original code
+import axios from 'axios';
 
 // --- Theme (Consistent with other screens) ---
 const theme = {
