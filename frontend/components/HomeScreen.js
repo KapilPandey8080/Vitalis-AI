@@ -163,6 +163,7 @@ export const HomeScreen = () => {
         { title: 'Breast Cancer', description: 'Analyze data for breast cancer.', icon: 'ribbon', color: '#FF9F43', navigateTo: 'BreastCancerPredict' },
         { title: 'Heart Disease', description: 'Predict the risk of heart disease.', icon: 'heart-pulse', color: '#FF6B6B', navigateTo: 'HeartDiseasePredict' },
         { title: 'Diabetes', description: 'Estimate the probability of diabetes.', icon: 'water-opacity', color: '#3A86FF', navigateTo: 'DiabetesPredict' },
+        { title: 'Pneumonia', description: 'Analyze X-ray images for pneumonia.', icon: 'lungs', color: '#48C9B0', navigateTo: 'PneumoniaPredict' },
     ];
 
     return (

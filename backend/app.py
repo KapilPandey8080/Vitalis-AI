@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
+import tensorflow as tf
+from tensorflow.keras.preprocessing import image
 import pickle
 import numpy as np
 from flask_cors import CORS
+from PIL import Image
+import io
 
 app = Flask(__name__)
 CORS(app)
@@ -27,6 +31,20 @@ with open("./model/diabetes_model.pkl", "rb") as f:
 
 with open("./scaler/diabetes_model_scaler.pkl", "rb") as f:
     diabetes_model_scaler = pickle.load(f)
+
+# Pneumonia model
+pneumonia_model = tf.keras.models.load_model("./model/pneumonia_model_new.keras")
+
+
+# Preprocess function
+def preprocess_image(img, target_size=(224,224)):
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img = img.resize(target_size)
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array /= 255.0  # normalize
+    return img_array
 
 
 
@@ -99,6 +117,21 @@ def diabetes_predict():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+
+@app.route("/pneumonia_predict", methods=["POST"])
+def predict():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+    file = request.files['file']
+    img = Image.open(io.BytesIO(file.read()))
+    processed_img = preprocess_image(img)
+    
+    prediction = pneumonia_model.predict(processed_img)[0][0]
+    result = "Pneumonia" if prediction > 0.5 else "Normal"
+    
+    return jsonify({"prediction": result, "confidence": float(prediction)})
+
 
 
 

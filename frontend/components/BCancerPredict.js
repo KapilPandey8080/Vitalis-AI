@@ -105,7 +105,6 @@ const BCancerPredict = () => {
         setResult(null);
         try {
             const input_data = features.map(Number);
-            // IMPORTANT: Replace with your actual API endpoint
             const response = await axios.post("http://127.0.0.1:5000/breast_cancer_predict", { input_data });
 
             setResult({

@@ -4,6 +4,7 @@ import { HomeScreen } from "./components/HomeScreen";
 import BCancerPredict from "./components/BCancerPredict";
 import HDiseasePredict from "./components/HDiseasePredict";
 import DiabetesPredict from "./components/DiabetesPredict";
+import PneumoniaPredict from "./components/PneumoniaPredict";
 
 const StackNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -30,6 +31,11 @@ const StackNavigator = () => {
                     name="DiabetesPredict"
                     component={DiabetesPredict}
                     options={{ headerShown: true, headerTitle:'Diabetes Prediction' }}
+                />
+                <Stack.Screen
+                    name="PneumoniaPredict"
+                    component={PneumoniaPredict}
+                    options={{ headerShown: true, headerTitle:'Pneumonia Prediction' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
